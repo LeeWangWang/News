@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/degree_rel"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="-620dp"
+    android:background="#99232323"
+    android:visibility="gone" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#ffffff" >
+
+        <cn.edu.sdtbu.news.style.DegreeScrollView
+            android:id="@+id/degree_scrlllview"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:background="#ffffff" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_below="@id/degree_scrlllview"
+            android:layout_marginTop="-95dp"
+            android:background="@mipmap/picker_tv_bg" />
+
+        <Button
+            android:id="@+id/bt_degree_yes"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_below="@id/degree_scrlllview"
+            android:layout_marginLeft="70dp"
+            android:layout_marginRight="70dp"
+            android:layout_marginTop="-30dp"
+            android:background="#ff0000"
+            android:text="确定"
+            android:textColor="#ffffff"
+            android:textSize="14dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:layout_below="@id/bt_degree_yes" />
+    </RelativeLayout>
+
+</RelativeLayout>
+

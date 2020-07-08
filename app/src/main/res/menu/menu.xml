@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/recommend_fragment"
+        android:icon="@drawable/ic_baseline_thumb_up_alt_24"
+        android:title="推荐" />
+    <item
+        android:id="@+id/favorite_fragment"
+        android:icon="@drawable/ic_baseline_favorite_24"
+        android:title="关注" />
+    <item
+        android:id="@+id/about_me_fragment"
+        android:icon="@drawable/ic_baseline_person_24"
+        android:title="我" />
+</menu>

@@ -1,0 +1,13 @@
+{
+    "tpns": {
+        "access_id": "1500010299",
+        "access_key": "A1RQP7EY34M3"
+    },
+    "cn.edu.sdtbu.news": {
+        "channel": {
+            "enable": true
+        }
+    },
+    "debug": false ,
+    "version": "1.2.0.2"
+}

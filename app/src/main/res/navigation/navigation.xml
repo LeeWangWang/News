@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/recommend_fragment">
+
+    <fragment
+        android:id="@+id/recommend_fragment"
+        android:name="cn.edu.sdtbu.news.ui.RecommendFragment"
+        android:label="推荐"
+        tools:layout="@layout/recommend_fragment" />
+    <fragment
+        android:id="@+id/favorite_fragment"
+        android:name="cn.edu.sdtbu.news.ui.FavoriteFragment"
+        android:label="关注"
+        tools:layout="@layout/favorite_fragment" />
+    <fragment
+        android:id="@+id/about_me_fragment"
+        android:name="cn.edu.sdtbu.news.ui.AboutMeFragment"
+        android:label="我"
+        tools:layout="@layout/about_me_fragment" />
+</navigation>
