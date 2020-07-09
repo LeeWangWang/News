@@ -105,12 +105,12 @@ public class AboutMeFragment extends Fragment implements View.OnClickListener {
                         public void error(String err) {
                         }
                     },EasyOkHttp.StringTYPE);
-            mHeadPortraitImageView.setImageResource(R.mipmap.head_portrait);
+            mHeadPortraitImageView.setImageResource(R.mipmap.head);
             nickNameTextView.setVisibility(View.VISIBLE);
             mLoginButton.setVisibility(View.INVISIBLE);
         } else {
             //设置默认头像
-            mHeadPortraitImageView.setImageResource(R.mipmap.head_portrait);
+            mHeadPortraitImageView.setImageResource(R.mipmap.head);
             nickNameTextView.setVisibility(View.INVISIBLE);
             mLoginButton.setVisibility(View.VISIBLE);
             editInfoLayout.setVisibility(View.INVISIBLE);
@@ -141,7 +141,7 @@ public class AboutMeFragment extends Fragment implements View.OnClickListener {
                 editor.remove(BaseUser.LOGIN_PREF);
                 editor.remove(BaseUser.USER_ID_PREF);
                 //设置默认头像
-                mHeadPortraitImageView.setImageResource(R.mipmap.head_portrait);
+                mHeadPortraitImageView.setImageResource(R.mipmap.head);
                 nickNameTextView.setVisibility(View.INVISIBLE);
                 mLoginButton.setVisibility(View.VISIBLE);
                 editInfoLayout.setVisibility(View.INVISIBLE);

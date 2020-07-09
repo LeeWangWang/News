@@ -9,15 +9,11 @@ package cn.edu.sdtbu.news.entity;
  */
 public class Subscribe{
 
-
-        
     private Integer id;
 
-    
     //专栏id    
     private Integer tagId;
 
-    
     //用户id    
     private Integer subscribedBy;
 }

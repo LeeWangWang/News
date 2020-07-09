@@ -3,7 +3,6 @@ package cn.edu.sdtbu.news;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -103,6 +102,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             rememberCheBok.setChecked(true);
         }
 
+        MobSDK.submitPolicyGrantResult(true, null);
         //获取短信验证码功能
         eventHandler = new EventHandler(){
             @Override
@@ -144,8 +144,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         toRegisterTextView.setOnClickListener(this);
         getCodeTextView.setOnClickListener(this);
 
-        MobSDK.submitPolicyGrantResult(true, null);
-
         //账号密码登录或者短信登录
         passwordEditText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -157,10 +155,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (TextUtils.isEmpty(usernameEditText.getText()) && TextUtils.isEmpty(passwordEditText.getText())) {
                     //按钮不可用
-                    loginButton.setBackgroundColor(Color.parseColor("#D7D7D7"));
+                    //loginButton.setBackgroundColor(Color.parseColor("#D7D7D7"));
                     loginButton.setEnabled(false);
                 }else {
-                    loginButton.setBackgroundColor(Color.parseColor("#349FF1"));
+                    //loginButton.setBackgroundColor(Color.parseColor("#349FF1"));
                     loginButton.setEnabled(true);
                 }
             }
@@ -194,7 +192,26 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             Object data = msg.obj;
             if(result== SMSSDK.RESULT_COMPLETE) {
                 if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE) {
-                    Toast.makeText(getApplicationContext(), "验证码输入正确,登录成功", Toast.LENGTH_LONG).show();
+                    EasyOkHttp.get("http://47.98.156.16:8080/user/selectByUsername?username=" + account)
+                            .build(new HttpCallBack<User>() {
+                                @Override
+                                public void success(User user) {
+                                    Log.d(TAG, "登录成功，用户Id："+ user.getId());
+                                    //Gson gson = new Gson();
+                                    //User user = gson.fromJson(data, User.class);
+                                    SharedPreferences.Editor editor = preferences.edit();
+                                    editor.putString(BaseUser.ACCOUNT_PREF, user.getUsername());
+                                    editor.putString(BaseUser.PASSWORD_PREF, user.getPassword());
+                                    editor.putString(BaseUser.USER_ID_PREF, String.valueOf(user.getId()));
+                                    editor.putString(BaseUser.LOGIN_PREF, "true");
+                                    editor.apply();
+                                }
+                                @Override
+                                public void error(String err) {
+                                    Log.d(TAG, "登录成功，用户信息失败");
+                                }
+                            }, EasyOkHttp.ObjectTYPE);
+                    Toast.makeText(getApplicationContext(), "登录成功", Toast.LENGTH_LONG).show();
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 }
             } else {
@@ -326,9 +343,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                     @Override
                                     public void error(String err) {
                                     }
-                                },EasyOkHttp.StringTYPE);
+                                }, EasyOkHttp.StringTYPE);
                     }else {
                         //手机验证码登录
+                        account = usernameEditText.getText().toString().trim();
                         if (!checkCode(passwordEditText.getText().toString().trim())) {
                             break;
                         }

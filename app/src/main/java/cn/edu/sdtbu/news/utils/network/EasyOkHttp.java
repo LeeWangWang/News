@@ -31,6 +31,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+
 /**
  * @author lishengqi
  * @since 2020/6/25 16：18
@@ -175,7 +176,13 @@ public class EasyOkHttp {
                 requestUrl = requestUrl+"?";
             }
             for (String key : params.keySet()) {
-                requestUrl += key+"="+(String) params.get(key);
+//                requestUrl += key+"="+(String) params.get(key);
+//            }
+//            requestUrl = requestUrl.substring(0,requestUrl.length()-1);
+                requestUrl += key+"="+(String) params.get(key)+"&";
+            }
+            if (params.size() != 0){
+                requestUrl = requestUrl.substring(0,requestUrl.length()-1);
             }
             request = new Request.Builder()
                     .url(requestUrl)
@@ -281,7 +288,10 @@ public class EasyOkHttp {
             downUrl = downUrl+"?";
         }
         for (String key : params.keySet()) {
-            downUrl += key+"="+(String) params.get(key);
+            downUrl += key+"="+(String) params.get(key)+"&";
+        }
+        if (params.size() != 0){
+            requestUrl = requestUrl.substring(0,requestUrl.length()-1);
         }
         OkHttpUtils.get()
                 .url(downUrl)

@@ -52,7 +52,6 @@ public class ChangeNickNameActivity extends AppCompatActivity implements View.On
         inputNumberTextView = findViewById(R.id.tv_input_num);
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = preferences.edit();
         userId = preferences.getString(BaseUser.USER_ID_PREF,"");
 
         cancelEditImageView.setOnClickListener(this);
@@ -116,7 +115,7 @@ public class ChangeNickNameActivity extends AppCompatActivity implements View.On
                                 @Override
                                 public void error(String err) {
                                 }
-                            },EasyOkHttp.StringTYPE);
+                            }, EasyOkHttp.StringTYPE);
                     finish();
                 }
                 break;

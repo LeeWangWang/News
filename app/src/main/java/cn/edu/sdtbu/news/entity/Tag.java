@@ -10,7 +10,6 @@ public class Tag {
 
     //专栏编号    
     private Integer id;
-
     
     //专栏名称    
     private String tagName;

@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">News</string>
+
+    <!--    李升起功能用的-->
+    <string name="news_detail_title">文章详情</string>
+    <string name="qq_qzone_error">QQ空间分享失败</string>
+    <string name="qq_qzone_cancel">QQ空间分享取消</string>
+    <string name="qq_qzone_succ">QQ空间分享成功</string>
+    <string name="qqshare_error">QQ朋友发送失败</string>
+    <string name="qqshare_cancel">QQ朋友发送取消</string>
+    <string name="qqshare_succ">QQ朋友发送成功</string>
 </resources>

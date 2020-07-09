@@ -5,4 +5,11 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="label_orange">#E65100</color>
+
+    <!--    新闻详情用的-->
+    <color name="commentDetailWhite">#FFFFFF</color>
+    <color name="commentDetailBlack">#0B0A0A</color>
+    <color name="transparent">#00000000</color>
+    <color name="ic_detail_return_background">#FFFFFF</color>
+
 </resources>

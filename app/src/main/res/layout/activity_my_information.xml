@@ -47,10 +47,10 @@
         android:layout_marginBottom="15dp"
         android:orientation="vertical">
 
-        <cn.edu.sdtbu.news.style.CircleImageView
+        <ImageView
             android:id="@+id/img_change_head"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
             android:scaleType="centerCrop"
             android:layout_gravity="center"
             android:src="@mipmap/head_portrait" />

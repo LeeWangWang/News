@@ -18,5 +18,15 @@ public class Favorite{
     private Integer createBy;
 
     //收藏时间    
-    private Integer createTime;
+    private String createTime;
+
+    @Override
+    public String toString() {
+        return "Favorite{" +
+                "id=" + id +
+                ", newsId=" + newsId +
+                ", createBy=" + createBy +
+                ", createTime=" + createTime +
+                '}';
+    }
 }

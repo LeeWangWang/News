@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginRight="32dp"
+        android:background="#F6F6F6"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginRight="32dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="#F6F6F6">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/reply_item_logo"
+            android:layout_width="23dp"
+            android:layout_height="23dp"
+            android:src="@mipmap/user_logo"
+            android:layout_marginRight="6dp"/>
+        <TextView
+            android:id="@+id/reply_item_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="名字"
+            android:textSize="14sp"
+            android:textColor="#2B2929"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="48dp"
+        android:layout_marginRight="32dp"
+        android:orientation="vertical"
+        android:background="#F6F6F6">
+        <TextView
+            android:id="@+id/reply_item_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:paddingRight="8dp"
+            android:maxLines="10"
+            android:ellipsize="end"
+            android:textColor="#626262"
+            android:textSize="14sp"
+            android:text="就像风没吹过，你没来过，我没"/>
+        <TextView
+            android:id="@+id/reply_item_content_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:paddingRight="8dp"
+            android:maxLines="10"
+            android:ellipsize="end"
+            android:textColor="#949494"
+            android:textSize="14sp"
+            android:text="2020-07-02 19:30:45"/>
+    </LinearLayout>
+
+</LinearLayout>

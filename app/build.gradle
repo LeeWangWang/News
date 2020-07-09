@@ -4,11 +4,9 @@ apply plugin: 'com.mob.sdk'
 
 // 在MobSDK的扩展中注册SMSSDK的相关信息
 MobSDK {
-    appKey "2ffe03873662c"
-    appSecret "10252f7e31830bff20cd117ad1a51d44"
-    SMSSDK {
-        gui false
-    }
+    appKey "2ff06981d1200"
+    appSecret "375d97aa0e523df942199ee2dc58d17e"
+    SMSSDK {}
 }
 
 android {
@@ -20,10 +18,7 @@ android {
     }
     defaultConfig {
         applicationId "cn.edu.sdtbu.news"
-        //模拟器版本
         minSdkVersion 22
-        //真机版本
-        //minSdkVersion 26
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -38,8 +33,11 @@ android {
                 JPUSH_CHANNEL: "default_developer",
         ]
 
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        android {
+            compileOptions.encoding = "UTF-8"
+        }
     }
 
     buildTypes {
@@ -53,20 +51,6 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
-    }
-
-    packagingOptions{
-        exclude 'META-INF/DEPENDENCIES.txt'
-        exclude 'META-INF/LICENSE.txt'
-        exclude 'META-INF/NOTICE.txt'
-        exclude 'META-INF/NOTICE'
-        exclude 'META-INF/LICENSE'
-        exclude 'META-INF/DEPENDENCIES'
-        exclude 'META-INF/notice.txt'
-        exclude 'META-INF/license.txt'
-        exclude 'META-INF/dependencies.txt'
-        exclude 'META-INF/LGPL2.1'
-        exclude 'META-INF/ASL2.0'
     }
 }
 
@@ -89,7 +73,12 @@ dependencies {
     implementation 'com.zhy:okhttputils:2.0.0'
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'org.conscrypt:conscrypt-android:2.2.1'
-
+    //    李升起功能
+    implementation 'com.github.bumptech.glide:glide:3.7.0'
+    implementation 'de.hdodenhof:circleimageview:2.1.0'
+    implementation files('libs/mta-sdk-2.0.0.jar')
+    implementation files('libs/open_sdk_r6020.jar')
+    implementation files('libs/mid-sdk-2.10.jar')
     //page
     def paging_version = "2.1.2"
     implementation "androidx.paging:paging-runtime:$paging_version" // For Kotlin use paging-runtime-ktx

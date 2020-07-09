@@ -1,11 +1,7 @@
 package cn.edu.sdtbu.news.recevier;
 
-import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.tencent.android.tpush.NotificationAction;
 import com.tencent.android.tpush.XGPushBaseReceiver;

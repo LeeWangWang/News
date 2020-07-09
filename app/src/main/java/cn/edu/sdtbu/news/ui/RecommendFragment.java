@@ -1,24 +1,17 @@
 package cn.edu.sdtbu.news.ui;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModelProviders;
-
-import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.os.Handler;
-import android.os.Message;
-import android.text.TextUtils;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.SearchView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -31,9 +24,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import cn.edu.sdtbu.news.Constant;
 import cn.edu.sdtbu.news.R;
-import cn.edu.sdtbu.news.SearchResultActivity;
-import cn.edu.sdtbu.news.entity.News;
 import cn.edu.sdtbu.news.entity.NewsVO;
+import cn.edu.sdtbu.news.style.BaseUser;
 import cn.edu.sdtbu.news.ui.adapter.NewsListAdapter;
 import cn.edu.sdtbu.news.utils.network.EasyOkHttp;
 import cn.edu.sdtbu.news.utils.network.HttpCallBack;
@@ -41,6 +33,9 @@ import cn.edu.sdtbu.news.utils.network.HttpCallBack;
 public class RecommendFragment extends Fragment {
     RecyclerView rvNewsListView;
     NewsListAdapter adapter;
+    private SharedPreferences preferences;
+
+    private static final String TAG = "RecommendFragment";
 
     public static final String PREFFIX_URL = Constant.BASE_URL +"news/";
 
@@ -50,14 +45,28 @@ public class RecommendFragment extends Fragment {
         getActivity().findViewById(R.id.searchView2).setVisibility(View.VISIBLE);
         View view = inflater.inflate(R.layout.recommend_fragment, container, false);
         rvNewsListView = view.findViewById(R.id.rv_recommond_news);
-        //获取数据
-        getNews();
+
+        try {
+            preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+            String userId = preferences.getString(BaseUser.USER_ID_PREF,"");
+
+            getNews(userId);
+            Log.d(TAG, "onCreateView: "+userId);
+        }catch (NullPointerException e){
+            e.printStackTrace();
+            getNews("28");
+        }
 
         return view;
     }
 
-    private void getNews(){
-        EasyOkHttp.get(PREFFIX_URL+"recommand")
+    private void getNews(String userId){
+        Log.d(TAG, "onCreateView: "+userId);
+
+        if(userId == null || userId.equals("")){
+            userId = "28";
+        }
+        EasyOkHttp.get(PREFFIX_URL+"recommand").add("userId",userId)
                 .build(new HttpCallBack<String>() {
                     @Override
                     public void success(String s) {
@@ -66,8 +75,8 @@ public class RecommendFragment extends Fragment {
                         Gson gson = new Gson();
                         Type listType = new TypeToken<ArrayList<NewsVO>>(){}.getType();
                         List<NewsVO> resultList = gson.fromJson(s,listType);
-                        //
-                        adapter = new NewsListAdapter(resultList);
+
+                        adapter = new NewsListAdapter(getContext(),resultList);
                         rvNewsListView.setLayoutManager(new LinearLayoutManager(getActivity()));
                         rvNewsListView.setAdapter(adapter);
                     }
@@ -75,14 +84,13 @@ public class RecommendFragment extends Fragment {
                     public void error(String err) {
                         Log.d("okhttp",err);
                     }
-                },EasyOkHttp.ListTYPE);
+                }, EasyOkHttp.ListTYPE);
     }
     @Override
 
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         //mViewModel = ViewModelProviders.of(this).get(RecommendViewModel.class);
-
     }
 
 }

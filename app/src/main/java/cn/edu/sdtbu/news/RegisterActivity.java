@@ -2,7 +2,6 @@ package cn.edu.sdtbu.news;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.Editable;
@@ -80,10 +79,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 String password = passwordEditText.getText().toString().trim();
                 if (TextUtils.isEmpty(nickname) || TextUtils.isEmpty(username) || TextUtils.isEmpty(password)) {
                     //按钮不可用
-                    registerButton.setBackgroundColor(Color.parseColor("#D7D7D7"));
+                    //registerButton.setBackgroundColor(Color.parseColor("#D7D7D7"));
                     registerButton.setEnabled(false);
                 }else {
-                    registerButton.setBackgroundColor(Color.parseColor("#349FF1"));
+                    //registerButton.setBackgroundColor(Color.parseColor("#349FF1"));
                     registerButton.setEnabled(true);
                 }
             }
@@ -122,12 +121,15 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                     editor.putString(BaseUser.PASSWORD_PREF, passwordEditText.getText().toString().trim());
                                     editor.putString(BaseUser.LOGIN_PREF, "true");
                                     editor.apply();
-                                    startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+                                    Log.d("完成了","完成了");
+                                    Intent intent = new Intent(RegisterActivity.this, UserPortraitActivity.class);
+                                    intent.putExtra("userid",string);
+                                    startActivity(intent);
                                 }
                                 @Override
                                 public void error(String err) {
                                 }
-                            },EasyOkHttp.StringTYPE);
+                            }, EasyOkHttp.StringTYPE);
                 }
                 break;
             default :

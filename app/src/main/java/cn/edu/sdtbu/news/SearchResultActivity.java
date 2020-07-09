@@ -1,15 +1,11 @@
 package cn.edu.sdtbu.news;
 
+import android.content.Intent;
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import cn.edu.sdtbu.news.entity.NewsVO;
-import cn.edu.sdtbu.news.ui.adapter.NewsListAdapter;
-import cn.edu.sdtbu.news.utils.network.EasyOkHttp;
-import cn.edu.sdtbu.news.utils.network.HttpCallBack;
-
-import android.content.Intent;
-import android.os.Bundle;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -17,6 +13,11 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+
+import cn.edu.sdtbu.news.entity.NewsVO;
+import cn.edu.sdtbu.news.ui.adapter.NewsListAdapter;
+import cn.edu.sdtbu.news.utils.network.EasyOkHttp;
+import cn.edu.sdtbu.news.utils.network.HttpCallBack;
 
 public class SearchResultActivity extends AppCompatActivity {
     RecyclerView rvNewsListView;
@@ -34,7 +35,7 @@ public class SearchResultActivity extends AppCompatActivity {
         Bundle bundle = intent.getExtras();   //获取intent里面的bundle对象
         String keyword = bundle.getString("keyword");   //获取Bundle里面的字符串
         //
-        //this.setTitle("\""+keyword+"\""+"的搜索结果");
+        this.setTitle("\""+keyword+"\""+"的搜索结果");
 
         getNews(keyword);
 
@@ -49,7 +50,7 @@ public class SearchResultActivity extends AppCompatActivity {
                         Type listType = new TypeToken<ArrayList<NewsVO>>(){}.getType();
                         List<NewsVO> resultList = gson.fromJson(s,listType);
 
-                        adapter = new NewsListAdapter(resultList);
+                        adapter = new NewsListAdapter(SearchResultActivity.this,resultList);
                         rvNewsListView.setLayoutManager(new LinearLayoutManager(SearchResultActivity.this));
                         rvNewsListView.setAdapter(adapter);
                     }
@@ -57,6 +58,6 @@ public class SearchResultActivity extends AppCompatActivity {
                     public void error(String err) {
 
                     }
-                },EasyOkHttp.ListTYPE);
+                }, EasyOkHttp.ListTYPE);
     }
 }

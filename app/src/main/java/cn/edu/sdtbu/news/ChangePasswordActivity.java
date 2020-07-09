@@ -65,25 +65,31 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
                 final String pass2 = newPassEditText.getText().toString().trim();
                 String pass3 = confirmNewPassEditText.getText().toString().trim();
                 if (chechPassword(pass1, pass2, pass3)){
-                    Log.d(TAG, "密码正则表达式通过");
-                    String password = preferences.getString(BaseUser.PASSWORD_PREF,"");
-                    String userid = preferences.getString(BaseUser.USER_ID_PREF, "");
-                    Log.d(TAG,"旧密码" + password + "输入的旧密码：" + pass1 + "  输入的新密码："+ pass2 + "   确认新密码：" + pass3);
-                    if (password.equals(pass1)) {
-                        EasyOkHttp.get("http://47.98.156.16:8080/user/updatePasswordByuserid?userid="+userid +"&oldPassword="+pass1+"&newPassword="+pass2)
-                                .build(new HttpCallBack<String>() {
-                                    @Override
-                                    public void success(String string) {
-                                        Log.d(TAG, "修改密码成功，用户ID：" + string);
-                                        SharedPreferences.Editor editor = preferences.edit();
-                                        editor.putString(BaseUser.PASSWORD_PREF, pass2);
-                                        finish();
-                                    }
-                                    @Override
-                                    public void error(String err) {
-                                        Log.d(TAG, "修改密码失败，用户主键：" + err);
-                                    }
-                                },EasyOkHttp.StringTYPE);
+                    if (pass1.equals(pass2)) {
+                        Toast.makeText(getApplicationContext(),"新密码和旧密码不能重复", Toast.LENGTH_LONG).show();
+                    }else {
+                        Log.d(TAG, "密码正则表达式通过");
+                        String password = preferences.getString(BaseUser.PASSWORD_PREF,"");
+                        String userid = preferences.getString(BaseUser.USER_ID_PREF, "");
+                        Log.d(TAG,"旧密码" + password + "输入的旧密码：" + pass1 + "  输入的新密码："+ pass2 + "   确认新密码：" + pass3);
+                        if (password.equals(pass1)) {
+                            EasyOkHttp.get("http://47.98.156.16:8080/user/updatePasswordByuserid?userid="+userid +"&oldPassword="+pass1+"&newPassword="+pass2)
+                                    .build(new HttpCallBack<String>() {
+                                        @Override
+                                        public void success(String string) {
+                                            Log.d(TAG, "修改密码成功，用户ID：" + string);
+                                            SharedPreferences.Editor editor = preferences.edit();
+                                            editor.putString(BaseUser.PASSWORD_PREF, pass2);
+                                            editor.apply();
+                                            Toast.makeText(getApplicationContext(),"修改成功", Toast.LENGTH_LONG).show();
+                                            finish();
+                                        }
+                                        @Override
+                                        public void error(String err) {
+                                            Log.d(TAG, "修改密码失败，用户主键：" + err);
+                                        }
+                                    }, EasyOkHttp.StringTYPE);
+                        }
                     }
                 }
                 break;

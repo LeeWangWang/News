@@ -58,7 +58,6 @@ public class ChangeUserNameActivity extends AppCompatActivity implements View.On
         initView();
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = preferences.edit();
         oldAccount = preferences.getString(BaseUser.ACCOUNT_PREF,"");
         Log.d(TAG, ""+oldAccount.length());
         String message = "验证码将发送到手机" + oldAccount.substring(0,3) + "****" + oldAccount.substring(7, 11);

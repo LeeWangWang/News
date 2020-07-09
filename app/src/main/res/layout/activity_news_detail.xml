@@ -1,22 +1,165 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:fitsSystemWindows="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NewsDetailActivity">
+    tools:context=".activity.NewsDetailActivity">
 
-    <TextView
-        android:id="@+id/tv_note"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textColor="#B71C1C"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <RelativeLayout
+        android:id="@+id/action_bar_self"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/commentDetailWhite">
+
+        <TextView
+            android:id="@+id/txt_nd"
+            android:layout_width="wrap_content"
+            android:layout_height="75dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="@string/news_detail_title"
+            android:textColor="@color/commentDetailBlack"
+            android:textSize="20dp" />
+
+        <ImageView
+            android:id="@+id/news_detail_back"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            app:srcCompat="@drawable/ic_news_detail_return" />
+
+        <ImageView
+            android:id="@+id/news_detail_share"
+            android:layout_width="50px"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="18.75px"
+            android:layout_marginRight="15dp"
+            android:gravity="center"
+            app:srcCompat="@drawable/comment_share" />
+    </RelativeLayout>
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_below="@+id/action_bar_self"
+        android:id="@+id/main_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <RelativeLayout
+                android:id="@+id/line1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <FrameLayout
+                    android:id="@+id/detail_page_comment_container1"
+
+                    android:layout_marginTop="1dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical" >
+
+                    <WebView
+                        android:id="@+id/web_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </FrameLayout>
+
+                <LinearLayout
+                    android:id="@+id/detail_page_comment_container"
+                    android:layout_below="@+id/detail_page_comment_container1"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/total_comment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textSize="18dp"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="@color/cardview_dark_background"
+                        android:text="全部评论"/>
+                    <cn.edu.sdtbu.news.activity.diyView.CommentExpandableListView
+                        android:id="@+id/detail_page_lv_comment"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:divider="@null"
+                        android:layout_marginBottom="64dp"
+                        android:listSelector="@android:color/transparent"
+                        android:scrollbars="none"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </androidx.core.widget.NestedScrollView>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/white"
+        android:elevation="2dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+        <TextView
+            android:id="@+id/detail_page_do_comment"
+            android:layout_width="0dp"
+            android:layout_height="34dp"
+            android:layout_weight="1"
+            android:textColor="#B6B6B6"
+            android:textSize="12sp"
+            android:text="说点什么吧..."
+            android:background="@drawable/comment_bt_selector"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="22dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="18dp"/>
+        <ImageView
+            android:id="@+id/comment_collect"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:src="@drawable/icon_collect"/>
+        <TextView
+            android:id="@+id/total_collect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#9A9A9A"
+            android:textSize="14sp"
+            android:layout_marginLeft="10dp"
+            android:text="32"/>
+
+        <ImageView
+            android:id="@+id/comment_share"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:src="@drawable/comment_share"
+            android:layout_marginLeft="20dp" />
+        <TextView
+            android:id="@+id/total_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#9A9A9A"
+            android:textSize="14sp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="14dp"
+            android:text="66"/>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

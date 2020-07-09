@@ -1,5 +1,4 @@
 package cn.edu.sdtbu.news.entity;
-import java.time.LocalDateTime;
 
 
 /**
@@ -8,7 +7,7 @@ import java.time.LocalDateTime;
  * @author yelihu
  * @since 2020-06-23 23:24:10
  */
-public class News{
+public class News {
 
     private Integer id;
 
