@@ -4,14 +4,5 @@
 团队：李旺旺、李升起、叶李虎、张海龙  
 使用语言：Android
 ## 添加依赖：
-1.将其添加到存储库末尾的root build.gradle中：  
-	allprojects {  
-		repositories {  
-			...  
-			maven { url 'https://jitpack.io' }  
-		}  
-	}  
-  	dependencies {  
-	        implementation 'com.github.LeeWangWang:News:Tag'  
-	}  
-	
+
+
